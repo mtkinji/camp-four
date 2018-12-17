@@ -14,7 +14,6 @@ const snackSchema = new mongoose.Schema({
   title:    { type: String, required: true },
   comment:  { type: String },
   tags:     { type: Array},
-  created:  { type: Date, default: Date.now }
 },
 { timestamps: { createdAt: 'created_at' } }
 );
