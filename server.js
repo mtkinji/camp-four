@@ -15,11 +15,10 @@ const userSchema = new mongoose.Schema({
 { timestamps: { createdAt: 'created_at' } }
 );
 
-const objectiveSchema = new mongoose.Schema({
-  objective:    { type: String, required: true },
-  type:         { type: String, required: true },
-  email:    { type: String, required: true },
-  team:     { type: String, required: true},
+const snackSchema = new mongoose.Schema({
+  title:    { type: String, required: true },
+  comment:  { type: String },
+  tags:     { type: Array},
   created:  { type: Date, default: Date.now }
 });
 
@@ -31,6 +30,7 @@ userSchema.methods.speak = function () {
 }
 
 const User = mongoose.model('User', userSchema);
+const Snack = mongoose.model('Snack', snackSchema);
 
 var createdUser = new User({
   fname: 'Blaire', lname: 'Whitaker', email: 'bwhita@gmail.com'});
