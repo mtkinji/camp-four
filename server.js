@@ -6,23 +6,27 @@ const port = 3000;
 
 const dbURL = mongoose.connect('mongodb+srv://user123:user123@camp-four-ikqzz.mongodb.net/camp-four?retryWrites=true',{ useNewUrlParser: true });
 
-const userSchema = new mongoose.Schema({
-  fname:    { type: String, required: true },
-  lname:    { type: String, required: true },
-  email:    { type: String, required: true },
-  team:     { type: String},
-},
-{ timestamps: { createdAt: 'created_at' } }
-);
+// Separating userSchema from snackSchema follows a "normalized" or referential data model. However, I want to refactor this into a subdocument model... eventually
+// SCHEMAS
 
 const snackSchema = new mongoose.Schema({
-  owner_id: { type: String},
+  // owner:    { type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   title:    { type: String, required: true },
   comment:  { type: String },
   tags:     { type: Array},
   created:  { type: Date, default: Date.now }
-});
+},
+{ timestamps: { createdAt: 'created_at' } }
+);
+const userSchema = new mongoose.Schema({
+  fname:    { type: String, required: true },
+  lname:    { type: String, required: true },
+  email:    { type: String, required: true },
+},
+{ timestamps: { createdAt: 'created_at' } }
+);
 
+// METHODS
 userSchema.methods.speak = function () {
   var greeting = this.fname
     ? "My name is " + this.fname + " " + this.lname
@@ -37,6 +41,7 @@ snackSchema.methods.speak = function () {
   console.log(showSnack);
 }
 
+// MODELS
 const User = mongoose.model('User', userSchema);
 const Snack = mongoose.model('Snack', snackSchema);
 
@@ -52,7 +57,7 @@ createdUser.save(function (err, createdUser) {
 
 // Hard coded snack creation
 var createdSnack = new Snack({
-  title: 'This is a UX Snack, it\'s a morsel of research like an audio interview, or a quote from a user.', comment: 'This is an example of what a constructed Snack might look like', tags: ['tag 1', 'tag 2', 'tag 3']});
+  title: 'This is a UX Snack, it\'s a morsel of research like an audio interview, or a quote from a user.', comment: 'This is an example of what a constructed Snack might look like', tags: ['tag 1', 'tag 2', 'tag 3'] });
 console.log(createdSnack);
 
 createdSnack.save(function (err, createdSnack) {
