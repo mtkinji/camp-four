@@ -16,6 +16,7 @@ const userSchema = new mongoose.Schema({
 );
 
 const snackSchema = new mongoose.Schema({
+  owner_id: { type: String},
   title:    { type: String, required: true },
   comment:  { type: String },
   tags:     { type: Array},
@@ -29,16 +30,34 @@ userSchema.methods.speak = function () {
   console.log(greeting);
 }
 
+snackSchema.methods.speak = function () {
+  var showSnack = this.title
+    ? "This Snack was added: " + this.title + " " + this.comment + " " + this.tags
+    : "I don't have a name";
+  console.log(showSnack);
+}
+
 const User = mongoose.model('User', userSchema);
 const Snack = mongoose.model('Snack', snackSchema);
 
+// Hard coded user creation
 var createdUser = new User({
   fname: 'Blaire', lname: 'Whitaker', email: 'bwhita@gmail.com'});
 console.log(createdUser);
 
-createdUser.save(function (err, andy) {
+createdUser.save(function (err, createdUser) {
   if (err) return console.error(err);
   createdUser.speak();
+});
+
+// Hard coded snack creation
+var createdSnack = new Snack({
+  title: 'This is a UX Snack, it\'s a morsel of research like an audio interview, or a quote from a user.', comment: 'This is an example of what a constructed Snack might look like', tags: ['tag 1', 'tag 2', 'tag 3']});
+console.log(createdSnack);
+
+createdSnack.save(function (err, createdSnack) {
+  if (err) return console.error(err);
+  createdSnack.speak();
 });
 
 app.get('/', (req, res) => res.send('Hello World!'));
