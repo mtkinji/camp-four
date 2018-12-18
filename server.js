@@ -13,23 +13,6 @@ db.once('open', function() {
 
 const dbURL = mongoose.connect('mongodb+srv://user123:user123@camp-four-ikqzz.mongodb.net/camp-four?retryWrites=true',{ useNewUrlParser: true });
 
-// Hard coded user creation
-var createdUser = new User({
-  fname: 'Andy',
-  lname: 'Watanabe',
-  email: Math.random(),
-  snacks: {
-    title: 'This is a title',
-    comment: 'This is a comment',
-    tags: ['tag 1','tag 2','tag 3','tag 4']
-  }
-});
-
-createdUser.save(function (err, createdUser) {
-  if (err) return console.error(err);
-  console.log(createdUser);
-});
-
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
