@@ -23,6 +23,6 @@ const dbURL = mongoose.connect('mongodb+srv://user123:user123@camp-four-ikqzz.mo
 // var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/', (req, res) => res.send('Hello World!'));
-app.get('/users', jsonParser, (req, res) => res.send(User.find({})));
+app.get('/users', (req, res) => res.send(User.find({})));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
