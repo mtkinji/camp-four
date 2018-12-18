@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require('./models/schema');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,15 @@ db.once('open', function() {
 
 const dbURL = mongoose.connect('mongodb+srv://user123:user123@camp-four-ikqzz.mongodb.net/camp-four?retryWrites=true',{ useNewUrlParser: true });
 
+// app.use(bodyParser.json());
+
+// // create application/json parser
+// var jsonParser = bodyParser.json()
+ 
+// // create application/x-www-form-urlencoded parser
+// var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/users', jsonParser, (req, res) => res.send(User.find({})));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
