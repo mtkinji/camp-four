@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const snackSchema = new Schema({
-  title:    { type: String, required: true },
-  comment:  { type: String },
-  tags:     { type: Array},
+  title:        { type: String, required: true },
+  description:  { type: String },
+  fileType:     { type: String },
+  tags:         { type: Array},
 },
 { timestamps: { createdAt: 'created_at' } }
 );
@@ -27,7 +28,7 @@ var createdUser = new User({
   email: Math.random(),
   snacks: {
     title: 'This is a title',
-    comment: 'This is a comment',
+    description: 'This is a comment',
     tags: ['tag 1','tag 2','tag 3','tag 4']
   }
 });
