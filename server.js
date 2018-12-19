@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
+app.use(bodyParser.urlencoded({extended: true}));
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
@@ -23,6 +25,17 @@ const dbURL = mongoose.connect('mongodb+srv://user123:user123@camp-four-ikqzz.mo
 // var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/users', (req, res) => res.send('Users view'));
 app.use('/index', express.static('public'));
+
+app.get('/snack', (req, res) => {
+  res.sendFile(__dirname + '/public/snack.html')
+  // res.redirect('/index');
+})
+
+app.post('/quotes', (req, res) => {
+  console.log(req.body)
+  res.redirect('/snack');
+})
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

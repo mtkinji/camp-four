@@ -14,7 +14,6 @@ const userSchema = new Schema({
   fname:    { type: String, required: true },
   lname:    { type: String, required: true },
   email:    { type: String, required: true, unique: true },
-  snacks:   [snackSchema]
 },
 { timestamps: { createdAt: 'created_at' } }
 );
@@ -22,20 +21,16 @@ const userSchema = new Schema({
 const User = mongoose.model('User', userSchema);
 
 // Hard coded user creation
-var createdUser = new User({
-  fname: 'Andy',
-  lname: 'Watanabe',
-  email: Math.random(),
-  snacks: {
-    title: 'This is a title',
-    description: 'This is a comment',
-    tags: ['tag 1','tag 2','tag 3','tag 4']
-  }
-});
+// var createdUser = new User({
+//   fname: 'Andy',
+//   lname: 'Watanabe',
+//   email: Math.random(),
+//   }
+// });
 
-createdUser.save(function (err, createdUser) {
-  if (err) return console.error(err);
-  console.log(createdUser);
-});
+// createdUser.save(function (err, createdUser) {
+//   if (err) return console.error(err);
+//   console.log(createdUser);
+// });
 
 module.exports = User;

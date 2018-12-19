@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Catamaran:200,400,600,800');
+
 /*------------------------------------*\
     RESET
 \*------------------------------------*/
@@ -71,8 +73,6 @@ table{
     $MAIN
 \*------------------------------------*/
 /* GO! */
-
-@import url('https://fonts.googleapis.com/css?family=Catamaran:200,400,600,800');
 
 body {
     font-family: 'Catamaran', sans-serif;
