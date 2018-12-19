@@ -42,4 +42,12 @@ app.post('/newsnack', (req, res) => {
   })
 })
 
+app.get('/snacklist', (req, res) => {
+  db.collection('snacks').find().toArray(function(err, results) {
+    console.log(results)
+    // send HTML file populated with quotes here
+    res.redirect('/');
+  })
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
