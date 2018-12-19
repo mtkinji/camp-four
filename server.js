@@ -33,9 +33,13 @@ app.get('/snack', (req, res) => {
   // res.redirect('/index');
 })
 
-app.post('/quotes', (req, res) => {
-  console.log(req.body)
-  res.redirect('/snack');
+app.post('/newsnack', (req, res) => {
+  db.collection('snacks').save(req.body, (err, result) => {
+    if (err) return console.log(err)
+
+    console.log('saved to database')
+    res.redirect('/snack')
+  })
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

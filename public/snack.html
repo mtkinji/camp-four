@@ -7,20 +7,34 @@
 	<link rel="stylesheet" href="css/style.css">
 	<!--[if IE]>
 		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+	<![endif]-->
+	<style>
+		body {
+			background: #22C1B7;
+		}
+		input, textarea {
+			font-size: 14px;
+			padding: 4px 8px;
+			border-radius: 4px;
+			margin-bottom: 4px;
+			border: 1px solid rgb(225,225,225);
+		}
+	</style>
 </head>
 
 <body>
 
 		<div style="display: flex; justify-content: center; margin-top: 24px;">
-			<div style="padding: 32px; border: 1px solid rgb(225,225,225); border-radius: 4px;">
+			<div style="padding: 32px; border: 1px solid rgb(225,225,225); border-radius: 4px; background: #E6EAED">
 
-					<form action="/quotes" method="POST" style="display: flex; flex-direction: column;">
-						<input type="text" placeholder="name" name="name">
-						<input type="text" placeholder="quote" name="quote">
+					<form action="/newsnack" method="POST" style="display: flex; flex-direction: column; width: 360px">
+						<p>Create a new snack</p>
+						<input type="text" placeholder="Title" name="title">
+						<textarea type="text" placeholder="Description" name="descrtiption" rows="3"></textarea>
+						<input type="text" placeholder="File Type" name="fileType">
 						<button type="submit">Submit</button>
 					</form>
-					
+
 			</div>
 		</div>
 
