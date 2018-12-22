@@ -16,13 +16,9 @@ db.once('open', function() {
 
 const dbURL = mongoose.connect('mongodb+srv://user123:user123@camp-four-ikqzz.mongodb.net/camp-four?retryWrites=true',{ useNewUrlParser: true });
 
-// app.use(bodyParser.json());
-
-// // create application/json parser
-// var jsonParser = bodyParser.json()
- 
-// // create application/x-www-form-urlencoded parser
-// var urlencodedParser = bodyParser.urlencoded({ extended: false })
+//-----------------------------//
+//---------- EXPRESS ----------//
+//-----------------------------//
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/users', (req, res) => res.send('Users view'));
@@ -30,11 +26,11 @@ app.use('/index', express.static('public'));
 
 app.get('/snack', (req, res) => {
   res.sendFile(__dirname + '/public/snack.html')
-  // res.redirect('/index');
+  res.redirect('/index');
 })
 
 app.post('/newsnack', (req, res) => {
-  db.collection('snacks').save(req.body, (err, result) => {
+  db.collection('snacks').insertOne(req.body, (err, result) => {
     if (err) return console.log(err)
 
     console.log('saved to database')
